@@ -3,20 +3,39 @@ const express = require('express'),
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     Ship = require('./api/models/ship'),
-    bodyParser = require('body-parser');
+    User = require('./api/models/user'),
+    bodyParser = require('body-parser'),
+    morgan = require('morgan'),
+    passport = require('passport');
 
+//Connexion à la base mongo
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://127.0.0.1:27017/spaceX');
+mongoose.connect('mongodb://argoTest:En_rg5fK_t9AZpf3@ds157233.mlab.com:57233/argospacex/user');
 
+//Pour recevoir du JSON et le parser correctement
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+//Log des requêtes
+app.use(morgan('dev'));
+
+//Initialisation de passport
+//app.use(passport.initialize());
+//Appel de la stratégie passport
+//require('./config/passport')(passport);
+
+//Ajout des routes à l'app
+require('./api/routes/ship')(app);
+require('./api/routes/user')(app);
+
+//Middleware qui détecte les mauvaises routes
 app.use(function(req, res) {
     res.status(404).send({url: req.originalUrl + ' not found'})
 });
 
-const routes = require('./api/routes/ship');
-routes(app);
-
+//Ecoute du port
 app.listen(port);
+
+
 
 console.log('Api started port: ' + port);
