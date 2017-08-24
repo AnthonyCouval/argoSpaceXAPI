@@ -5,7 +5,7 @@ const express = require('express'),
     Ship = require('./api/models/ship'),
     User = require('./api/models/user'),
     bodyParser = require('body-parser'),
-    morgan = require('morgan'),
+    logger = require('morgan'),
     passport = require('passport'),
     session = require('express-session'),
     cookieParser = require('cookie-parser');
@@ -15,15 +15,13 @@ const express = require('express'),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-
 //Log des requêtes
-app.use(morgan('dev'));
+app.use(logger('dev'));
 
 //Initialisation de passport
 app.use(cookieParser());
 app.use(require('express-session')({
-    secret: 'keyboard cat',
+    secret: 'the cake is a lie',
     resave: false,
     saveUninitialized: false
 }));
@@ -50,7 +48,5 @@ app.use(function(req, res) {
 
 //Ecoute du port
 app.listen(port);
-
-
 
 console.log('Api started port: ' + port);

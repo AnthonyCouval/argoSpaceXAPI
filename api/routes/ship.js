@@ -8,7 +8,6 @@ module.exports = function (app) {
             }
         );
 
-
     app.route('/ship/:shipId')
         .get(ship.read)
         .put(function (req, res) {
