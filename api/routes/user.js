@@ -7,7 +7,7 @@ module.exports = function (app) {
             res.render('index', {user: req.user});
         });
 
-    app.route('/register')
+    app.route('/user/register')
         .get(function (req, res) {
             user.register(req, res);
         })
@@ -15,30 +15,17 @@ module.exports = function (app) {
             user.newRegister(req, res, next);
         });
 
-    app.route('/login')
+    app.route('/user/login')
         .get(function (req, res) {
             user.login(req, res);
         })
         .post(passport.authenticate('local'), function (req, res) {
-            if (req.session.passport.user != null) {
-                res.redirect('/');
-            } else {
-                res.redirect('/register');
-            }
+            res.redirect('/');
         });
 
-    app.route('/logout')
+    app.route('/user/logout')
         .get(function (req, res) {
             user.logout(req, res);
-        });
-
-    app.route('/user/:userId')
-        .get(user.read)
-        .put(function (req, res) {
-            user.update(req, res)
-        })
-        .delete(function (req, res) {
-            user.delete(req, res)
         });
 
 };
