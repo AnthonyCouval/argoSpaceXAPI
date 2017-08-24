@@ -6,7 +6,9 @@ const express = require('express'),
     User = require('./api/models/user'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
-    passport = require('passport');
+    passport = require('passport'),
+    session = require('express-session'),
+    LocalStrategy = require('passport-local').Strategy;
 
 //Connexion à la base mongo
 mongoose.Promise = global.Promise;
@@ -19,14 +21,25 @@ app.use(bodyParser.json());
 //Log des requêtes
 app.use(morgan('dev'));
 
-//Initialisation de passport
-//app.use(passport.initialize());
-//Appel de la stratégie passport
-//require('./config/passport')(passport);
-
 //Ajout des routes à l'app
 require('./api/routes/ship')(app);
 require('./api/routes/user')(app);
+
+//Initialisation de passport
+app.use(session({
+    cookieName: 'session',
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //Middleware qui détecte les mauvaises routes
 app.use(function(req, res) {
