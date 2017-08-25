@@ -1,7 +1,7 @@
-const userApi = process.env.npm_config_apiUrl + '/user';
-const shipApi = process.env.npm_config_apiUrl + '/ship';
+const userCollection = process.env.npm_config_mongoUrl + '/user';
+const shipCollection = process.env.npm_config_mongoUrl + '/ship';
 
 module.exports = {
-    userApi,
-    shipApi
+    userCollection,
+    shipCollection
 };
