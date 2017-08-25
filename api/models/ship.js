@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 const ShipSchema = new Schema({
     name: {
@@ -9,7 +9,7 @@ const ShipSchema = new Schema({
     cover_url: {
         type: String
     },
-    description : {
+    description: {
         type: String
     },
     status: {
@@ -21,4 +21,4 @@ const ShipSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('Ship', ShipSchema);
+module.exports = mongoose.model('Ship', ShipSchema, 'ship');

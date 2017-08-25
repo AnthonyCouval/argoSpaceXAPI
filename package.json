@@ -21,9 +21,19 @@
     "nodemon": "^1.11.0"
   },
   "dependencies": {
+    "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "express": "^4.15.4",
+    "express-session": "^1.15.5",
+    "jsonwebtoken": "^7.4.3",
     "mongodb": "^2.2.31",
-    "mongoose": "^4.11.7"
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "passport-jwt": "^3.0.0",
+    "passport-local": "^1.0.0",
+    "passport-local-mongoose": "^4.1.0"
   }
 }
