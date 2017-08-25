@@ -9,7 +9,8 @@ const express = require('express'),
     passport = require('passport'),
     session = require('express-session'),
     cookieParser = require('cookie-parser');
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    config = require('./config/main');
 
 //Pour recevoir du JSON et le parser correctement
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,7 +40,7 @@ require('./api/routes/user')(app);
 
 //Connexion à la base mongo
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://argoTest:En_rg5fK_t9AZpf3@ds157233.mlab.com:57233/argospacex/user');
+mongoose.connect(config.userApi);
 
 //Middleware qui détecte les mauvaises routes
 app.use(function(req, res) {
