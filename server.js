@@ -5,25 +5,24 @@ const express = require('express'),
     Ship = require('./api/models/ship'),
     User = require('./api/models/user'),
     bodyParser = require('body-parser'),
-    morgan = require('morgan'),
+    logger = require('morgan'),
     passport = require('passport'),
     session = require('express-session'),
     cookieParser = require('cookie-parser');
-    LocalStrategy = require('passport-local').Strategy;
+    LocalStrategy = require('passport-local').Strategy,
+    config = require('./config/main');
 
 //Pour recevoir du JSON et le parser correctement
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
-
 //Log des requêtes
-app.use(morgan('dev'));
+app.use(logger('dev'));
 
 //Initialisation de passport
 app.use(cookieParser());
 app.use(require('express-session')({
-    secret: 'keyboard cat',
+    secret: 'the cake is a lie',
     resave: false,
     saveUninitialized: false
 }));
@@ -41,7 +40,7 @@ require('./api/routes/user')(app);
 
 //Connexion à la base mongo
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://argoTest:En_rg5fK_t9AZpf3@ds157233.mlab.com:57233/argospacex/user');
+mongoose.connect(config.userApi);
 
 //Middleware qui détecte les mauvaises routes
 app.use(function(req, res) {
@@ -50,7 +49,5 @@ app.use(function(req, res) {
 
 //Ecoute du port
 app.listen(port);
-
-
 
 console.log('Api started port: ' + port);

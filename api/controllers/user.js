@@ -3,11 +3,11 @@ const mongoose = require('mongoose'),
     passport = require('passport');
 
 exports.register = function (req, res) {
-    res.send('register', { });
+    res.send('register', {});
 };
 
 exports.newRegister = function (req, res, next) {
-    User.register(new User({ username : req.body.username }), req.body.password, function(err, user) {
+    User.register(new User({username: req.body.username}), req.body.password, function (err, user) {
         if (err) {
             res.send(err);
         }
@@ -17,14 +17,20 @@ exports.newRegister = function (req, res, next) {
                 if (err) {
                     res.send();
                 }
-                res.json(user);
+                res.json({
+                    'status': 'success',
+                    'message' : 'User successfully created'
+                });
             });
         });
     });
 };
 
 exports.login = function (req, res) {
-    res.render('login', { user : req.user });
+    res.json({
+        'status': 'success',
+        'message' : 'User successfully connected'
+    });
 };
 
 exports.logout = function (req, res) {
