@@ -1,5 +1,5 @@
-const userCollection = process.env.npm_config_mongoUrl + '/user';
-const shipCollection = process.env.npm_config_mongoUrl + '/ship';
+const userCollection = process.env.npm_config_mongoDb + '/user';
+const shipCollection = process.env.npm_config_mongoDb + '/ship';
 
 module.exports = {
     userCollection,
