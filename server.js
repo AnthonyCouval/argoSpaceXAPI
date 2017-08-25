@@ -40,7 +40,7 @@ require('./api/routes/user')(app);
 
 //Connexion à la base mongo
 mongoose.Promise = global.Promise;
-mongoose.connect(config.userApi);
+mongoose.connect(config.userCollection);
 
 //Middleware qui détecte les mauvaises routes
 app.use(function(req, res) {
