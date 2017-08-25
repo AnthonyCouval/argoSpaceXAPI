@@ -6,18 +6,32 @@ const ShipSchema = new Schema({
         type: String,
         required: 'Name for ship is required'
     },
-    cover_url: {
+    active: {
+        type: Boolean
+    },
+    stages: {
+        type: String
+    },
+    costPerLaunch: {
+        type: String
+    },
+    successRatePct: {
+        type: Number
+    },
+    firstFlight: {
+        type: String
+    },
+    launchpad: {
+        type: String
+    },
+    country: {
+        type: String
+    },
+    company: {
         type: String
     },
     description: {
         type: String
-    },
-    status: {
-        type: [{
-            type: String,
-            enum: ['pending', 'ongoing', 'completed']
-        }],
-        default: ['pending']
     }
 });
 
