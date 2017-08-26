@@ -52,9 +52,9 @@ exports.login = function (req, res) {
 exports.logout = function (req, res) {
     if (req.session.passport.user != null) {
         req.logout();
-        res.redirect('/');
-    }
-    else {
-        res.redirect('/')
+        res.json({
+            'status': 'success',
+            'message' : 'User successfully disconnected'
+        });
     }
 };
