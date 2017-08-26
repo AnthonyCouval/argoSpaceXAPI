@@ -32,6 +32,9 @@ const ShipSchema = new Schema({
     },
     description: {
         type: String
+    },
+    coverUrl : {
+        type: String
     }
 });
 

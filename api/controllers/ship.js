@@ -24,7 +24,10 @@ exports.create = function (req, res) {
     newShip.save(function (err, ship) {
         if (err)
             res.send(err);
-        res.json(ship);
+        res.json({
+            'status': 'success',
+            'message' : 'Ship successfully created'
+        });
     });
 };
 
@@ -50,7 +53,10 @@ exports.update = function (req, res) {
     Ship.findOneAndUpdate({_id: req.params.shipId}, req.body, {new: true}, function (err, ship) {
         if (err)
             res.send(err);
-        res.json(ship);
+        res.json({
+            'status': 'success',
+            'message' : 'Ship successfully updated'
+        });
     });
 };
 
@@ -65,6 +71,9 @@ exports.delete = function (req, res) {
     }, function (err, ship) {
         if (err)
             res.send(err);
-        res.json({message: 'Ship successfully deleted'});
+        res.json({
+            'status': 'success',
+            'message' : 'Ship successfully deleted'
+        });
     });
 };
