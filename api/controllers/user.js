@@ -15,13 +15,13 @@ exports.register = function (req, res) {
 exports.newRegister = function (req, res, next) {
     User.register(new User({username: req.body.username}), req.body.password, function (err, user) {
         if (err) {
-            res.send(err);
+            return res.send(err);
         }
 
         passport.authenticate('local')(req, res, function () {
             req.session.save(function (err) {
                 if (err) {
-                    res.send();
+                    return res.send(err);
                 }
                 res.json({
                     'status': 'success',
