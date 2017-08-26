@@ -8,8 +8,9 @@ const mongoose = require('mongoose'),
  */
 exports.list = function (req, res) {
     Ship.find({}, function (err, ship) {
-        if (err)
-            res.send(err);
+        if (err){
+            return res.send(err);
+        }
         res.json(ship);
     });
 };
@@ -22,8 +23,9 @@ exports.list = function (req, res) {
 exports.create = function (req, res) {
     const newShip = new Ship(req.body);
     newShip.save(function (err, ship) {
-        if (err)
-            res.send(err);
+        if (err) {
+            return res.send(err);
+        }
         res.json({
             'status': 'success',
             'message' : 'Ship successfully created'
@@ -38,8 +40,9 @@ exports.create = function (req, res) {
  */
 exports.read = function (req, res) {
     Ship.findById(req.params.shipId, function (err, ship) {
-        if (err)
-            res.send(err);
+        if (err) {
+            return res.send(err);
+        }
         res.json(ship);
     });
 };
@@ -51,8 +54,9 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
     Ship.findOneAndUpdate({_id: req.params.shipId}, req.body, {new: true}, function (err, ship) {
-        if (err)
-            res.send(err);
+        if (err) {
+            return res.send(err);
+        }
         res.json({
             'status': 'success',
             'message' : 'Ship successfully updated'
@@ -69,8 +73,9 @@ exports.delete = function (req, res) {
     Ship.remove({
         _id: req.params.shipId
     }, function (err, ship) {
-        if (err)
-            res.send(err);
+        if (err) {
+            return res.send(err);
+        }
         res.json({
             'status': 'success',
             'message' : 'Ship successfully deleted'
