@@ -4,6 +4,7 @@ const mongoose = require('mongoose'),
 const ShipSchema = new Schema({
     name: {
         type: String,
+        unique: true,
         required: 'Name for ship is required'
     },
     active: {
