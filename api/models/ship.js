@@ -33,9 +33,11 @@ const ShipSchema = new Schema({
     description: {
         type: String
     },
-    coverUrl : {
+    coverUrl: {
         type: String
     }
+}, {
+    versionKey: false
 });
 
 module.exports = mongoose.model('Ship', ShipSchema, 'ship');

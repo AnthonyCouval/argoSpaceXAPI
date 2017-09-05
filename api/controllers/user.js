@@ -25,7 +25,7 @@ exports.newRegister = function (req, res, next) {
                 }
                 res.json({
                     'status': 'success',
-                    'message' : 'User successfully created'
+                    'message': 'User successfully created'
                 });
             });
         });
@@ -40,7 +40,7 @@ exports.newRegister = function (req, res, next) {
 exports.login = function (req, res) {
     res.json({
         'status': 'success',
-        'message' : 'User successfully connected'
+        'message': 'User successfully connected'
     });
 };
 
@@ -54,7 +54,7 @@ exports.logout = function (req, res) {
         req.logout();
         res.json({
             'status': 'success',
-            'message' : 'User successfully disconnected'
+            'message': 'User successfully disconnected'
         });
     }
 };
