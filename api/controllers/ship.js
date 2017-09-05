@@ -8,7 +8,7 @@ const mongoose = require('mongoose'),
  */
 exports.list = function (req, res) {
     Ship.find({}, function (err, ship) {
-        if (err){
+        if (err) {
             return res.send(err);
         }
         res.json(ship);
@@ -27,8 +27,9 @@ exports.create = function (req, res) {
             return res.send(err);
         }
         res.json({
+            'data': newShip,
             'status': 'success',
-            'message' : 'Ship successfully created'
+            'message': 'Ship successfully created'
         });
     });
 };
@@ -58,8 +59,9 @@ exports.update = function (req, res) {
             return res.send(err);
         }
         res.json({
+            'data': ship,
             'status': 'success',
-            'message' : 'Ship successfully updated'
+            'message': 'Ship successfully updated'
         });
     });
 };
@@ -78,7 +80,7 @@ exports.delete = function (req, res) {
         }
         res.json({
             'status': 'success',
-            'message' : 'Ship successfully deleted'
+            'message': 'Ship successfully deleted'
         });
     });
 };
